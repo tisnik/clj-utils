@@ -211,4 +211,47 @@
         (are [x y] (= x y)
             nil (fourth nil))))
 
+(deftest test-substring-1
+    "Check the function clj-utils.utils/substring."
+    (testing "the function clj-utils.utils/substring."
+        (are [x y] (= x y)
+            "H"      (substring "Hello world!" 0 1)
+            "He"     (substring "Hello world!" 0 2)
+            "Hello"  (substring "Hello world!" 0 5)
+            "Hello " (substring "Hello world!" 0 6))))
+
+(deftest test-substring-2
+    "Check the function clj-utils.utils/substring."
+    (testing "the function clj-utils.utils/substring."
+        (are [x y] (= x y)
+            "w"      (substring "Hello world!" 6 7)
+            "wo"     (substring "Hello world!" 6 8)
+            "world"  (substring "Hello world!" 6 11)
+            "world!" (substring "Hello world!" 6 12))))
+
+(deftest test-substring-3
+    "Check the function clj-utils.utils/substring."
+    (testing "the function clj-utils.utils/substring."
+        (are [x y] (= x y)
+            "Hello world!" (substring "Hello world!" 0)
+            "ello world!"  (substring "Hello world!" 1)
+            "world!"       (substring "Hello world!" 6)
+            "!"            (substring "Hello world!" 11)
+            ""             (substring "Hello world!" 12))))
+
+(deftest test-substring-empty-result
+    "Check the function clj-utils.utils/substring."
+    (testing "the function clj-utils.utils/substring."
+        (are [x y] (= x y)
+            "" (substring "Hello world!" 0 0)
+            "" (substring "Hello world!" 1 1)
+            "" (substring "Hello world!" 2 2)
+            "" (substring "Hello world!" 10 10))))
+
+(deftest test-substring-NPE
+    "Check the function clj-utils.utils/substring."
+    (testing "the function clj-utils.utils/substring."
+        (is (thrown? NullPointerException (substring nil 0 0)))
+        (is (thrown? NullPointerException (substring "" nil 0)))
+        (is (thrown? NullPointerException (substring "" 0 nil)))))
 
