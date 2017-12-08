@@ -255,3 +255,29 @@
         (is (thrown? NullPointerException (substring "" nil 0)))
         (is (thrown? NullPointerException (substring "" 0 nil)))))
 
+(deftest test-contains-1
+    "Check the function clj-utils.utils/contains."
+    (testing "the function clj-utils.utils/contains."
+        (are [x y] (= x y)
+            false (contains "Hello world!" "h")
+            true  (contains "Hello world!" "H")
+            true  (contains "Hello world!" " ")
+            true  (contains "Hello world!" "!"))))
+
+(deftest test-contains-2
+    "Check the function clj-utils.utils/contains."
+    (testing "the function clj-utils.utils/contains."
+        (are [x y] (= x y)
+            false (contains "Hello world!" "hello")
+            true  (contains "Hello world!" "Hello")
+            true  (contains "Hello world!" "o w")
+            true  (contains "Hello world!" "world!"))))
+
+(deftest test-contains-NPE
+    "Check the function clj-utils.utils/contains."
+    (testing "the function clj-utils.utils/contains."
+        (is (thrown? NullPointerException (contains nil "")))
+        (is (thrown? NullPointerException (contains "" nil)))
+        (is (thrown? NullPointerException (contains nil nil)))))
+
+
