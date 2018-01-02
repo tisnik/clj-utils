@@ -330,8 +330,8 @@
         (is (thrown? NullPointerException (starts-with "text" nil)))
         (is (thrown? NullPointerException (starts-with nil "text")))))
 
-(deftest test-ends-with-1 "Check the function clj-utils.utils/ends-with."
-    (testing "the function clj-utils.utils/ends-with."
+(deftest test-endsWith-1 "Check the function clj-utils.utils/endsWith."
+    (testing "the function clj-utils.utils/endsWith."
         (are [x y] (= x y)
             true  (endsWith "Hello world!" "Hello world!")
             false (endsWith "Hello world!" "hello world!")
@@ -339,21 +339,46 @@
             true  (endsWith "Hello world!" "!")
             true  (endsWith "Hello world!" ""))))
 
-(deftest test-ends-with-2
-    "Check the function clj-utils.utils/ends-with."
-    (testing "the function clj-utils.utils/ends-with."
+(deftest test-endsWith-2
+    "Check the function clj-utils.utils/endsWith."
+    (testing "the function clj-utils.utils/endsWith."
         (are [x y] (= x y)
             false (endsWith "" "hello")
             false (endsWith "" "Hello")
             false (endsWith "" "H")
             true  (endsWith "" ""))))
 
-(deftest test-ends-with-NPE
-    "Check the function clj-utils.utils/ends-with."
-    (testing "the function clj-utils.utils/ends-with."
+(deftest test-endsWith-NPE
+    "Check the function clj-utils.utils/endsWith."
+    (testing "the function clj-utils.utils/endsWith."
         (is (thrown? NullPointerException (endsWith nil nil)))
         (is (thrown? NullPointerException (endsWith "text" nil)))
         (is (thrown? NullPointerException (endsWith nil "text")))))
+
+(deftest test-ends-with-1 "Check the function clj-utils.utils/ends-with."
+    (testing "the function clj-utils.utils/ends-with."
+        (are [x y] (= x y)
+            true  (ends-with "Hello world!" "Hello world!")
+            false (ends-with "Hello world!" "hello world!")
+            true  (ends-with "Hello world!" "world!")
+            true  (ends-with "Hello world!" "!")
+            true  (ends-with "Hello world!" ""))))
+
+(deftest test-ends-with-2
+    "Check the function clj-utils.utils/ends-with."
+    (testing "the function clj-utils.utils/ends-with."
+        (are [x y] (= x y)
+            false (ends-with "" "hello")
+            false (ends-with "" "Hello")
+            false (ends-with "" "H")
+            true  (ends-with "" ""))))
+
+(deftest test-ends-with-NPE
+    "Check the function clj-utils.utils/ends-with."
+    (testing "the function clj-utils.utils/ends-with."
+        (is (thrown? NullPointerException (ends-with nil nil)))
+        (is (thrown? NullPointerException (ends-with "text" nil)))
+        (is (thrown? NullPointerException (ends-with nil "text")))))
 
 (deftest test-replaceAll-1
     "Check the function clj-utils.utils/replaceAll."
