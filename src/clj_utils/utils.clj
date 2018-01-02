@@ -1,5 +1,5 @@
 ;
-;  (C) Copyright 2017  Pavel Tisnovsky
+;  (C) Copyright 2017, 2018  Pavel Tisnovsky
 ;
 ;  All rights reserved. This program and the accompanying materials
 ;  are made available under the terms of the Eclipse Public License v1.0
@@ -11,7 +11,7 @@
 ;
 
 (ns clj-utils.utils
-    "Various utility function used by other modules.")
+    "Various utility functions used by other modules.")
 
 (defn third
     "Simple utility function - returns third item from a given sequence, nil if third item does not exist."
@@ -35,10 +35,18 @@
     [^String s pattern]
     (.startsWith s pattern))
 
+(defmacro starts-with
+    [s pattern]
+    `(startsWith ~s ~pattern))
+
 (defn endsWith
     "Call method String.endsWith()."
     [^String s pattern]
     (.endsWith s pattern))
+
+(defmacro ends-with
+    [s pattern]
+    `(endsWith ~s ~pattern))
 
 (defn contains
     "Call method String.contains()."
@@ -49,6 +57,10 @@
     "Call method String.replaceAll()."
     [^String s pattern replacement]
     (.replaceAll s pattern replacement))
+
+(defmacro replace-all
+    [s pattern replacement]
+    `(replaceAll ~s ~pattern ~replacement))
 
 (defn get-exception-message
     "Retrieve a message from given exception."
