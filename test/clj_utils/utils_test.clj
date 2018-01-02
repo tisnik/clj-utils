@@ -280,30 +280,55 @@
         (is (thrown? NullPointerException (contains "" nil)))
         (is (thrown? NullPointerException (contains nil nil)))))
 
-(deftest test-starts-with-1
-    "Check the function clj-utils.utils/starts-with."
-    (testing "the function clj-utils.utils/starts-with."
+(deftest test-startsWith-1
+    "Check the function clj-utils.utils/startsWith."
+    (testing "the function clj-utils.utils/startsWith."
         (are [x y] (= x y)
             false (startsWith "Hello world!" "hello")
             true  (startsWith "Hello world!" "Hello")
             true  (startsWith "Hello world!" "H")
             true  (startsWith "Hello world!" ""))))
 
-(deftest test-starts-with-2
-    "Check the function clj-utils.utils/starts-with."
-    (testing "the function clj-utils.utils/starts-with."
+(deftest test-startsWith-2
+    "Check the function clj-utils.utils/startsWith."
+    (testing "the function clj-utils.utils/startsWith."
         (are [x y] (= x y)
             false (startsWith "" "hello")
             false (startsWith "" "Hello")
             false (startsWith "" "H")
             true  (startsWith "" ""))))
 
-(deftest test-starts-with-NPE
-    "Check the function clj-utils.utils/starts-with."
-    (testing "the function clj-utils.utils/starts-with."
+(deftest test-startsWith-NPE
+    "Check the function clj-utils.utils/startsWith."
+    (testing "the function clj-utils.utils/startsWith."
         (is (thrown? NullPointerException (startsWith nil nil)))
         (is (thrown? NullPointerException (startsWith "text" nil)))
         (is (thrown? NullPointerException (startsWith nil "text")))))
+
+(deftest test-starts-with-1
+    "Check the function clj-utils.utils/starts-with."
+    (testing "the function clj-utils.utils/starts-with."
+        (are [x y] (= x y)
+            false (starts-with "Hello world!" "hello")
+            true  (starts-with "Hello world!" "Hello")
+            true  (starts-with "Hello world!" "H")
+            true  (starts-with "Hello world!" ""))))
+
+(deftest test-starts-with-2
+    "Check the function clj-utils.utils/starts-with."
+    (testing "the function clj-utils.utils/starts-with."
+        (are [x y] (= x y)
+            false (starts-with "" "hello")
+            false (starts-with "" "Hello")
+            false (starts-with "" "H")
+            true  (starts-with "" ""))))
+
+(deftest test-starts-with-NPE
+    "Check the function clj-utils.utils/starts-with."
+    (testing "the function clj-utils.utils/starts-with."
+        (is (thrown? NullPointerException (starts-with nil nil)))
+        (is (thrown? NullPointerException (starts-with "text" nil)))
+        (is (thrown? NullPointerException (starts-with nil "text")))))
 
 (deftest test-ends-with-1 "Check the function clj-utils.utils/ends-with."
     (testing "the function clj-utils.utils/ends-with."
