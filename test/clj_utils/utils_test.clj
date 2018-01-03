@@ -447,6 +447,8 @@
     (are [x y] (= x y)
         true (parse-boolean "true")
         true (parse-boolean "True")
+        true (parse-boolean "yes")
+        true (parse-boolean "Yes")
         false (parse-boolean "false")
         false (parse-boolean "False")
         false (parse-boolean "")
