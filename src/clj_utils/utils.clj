@@ -81,7 +81,9 @@
     "Parse the given string as a boolean value."
     [string]
     (or (= string "true")
-        (= string "True")))
+        (= string "True")
+        (= string "yes")
+        (= string "Yes")))
 
 (defn throw-exception
     ( [message]
