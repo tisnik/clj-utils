@@ -1,5 +1,5 @@
 ;
-;  (C) Copyright 2017  Pavel Tisnovsky
+;  (C) Copyright 2017, 2018  Pavel Tisnovsky
 ;
 ;  All rights reserved. This program and the accompanying materials
 ;  are made available under the terms of the Eclipse Public License v1.0
@@ -410,6 +410,37 @@
         (is (thrown? NullPointerException (replaceAll "a" nil "b")))
         (is (thrown? NullPointerException (replaceAll "a" "a" nil)))
         (is (thrown? NullPointerException (replaceAll nil nil "b")))))
+
+(deftest test-replace-all-1
+    "Check the function clj-utils.utils/replace-all."
+    (testing "the function clj-utils.utils/replace-all."
+        (are [x y] (= x y)
+            ""    (replace-all "" "" "")
+            "b"   (replace-all "a" "a" "b")
+            "bb"  (replace-all "aa" "a" "b")
+            "bcb" (replace-all "aca" "a" "b"))))
+
+(deftest test-replace-all-2
+    "Check the function clj-utils.utils/replace-all."
+    (testing "the function clj-utils.utils/replace-all."
+        (are [x y] (= x y)
+            "b"     (replace-all "aa" "aa" "b")
+            "bb"    (replace-all "aaaa" "aa" "b")
+            "xbbx"  (replace-all "xaaaax" "aa" "b")
+            "xbxbx" (replace-all "xaaxaax" "aa" "b"))))
+
+(deftest test-replace-all-not-NPE
+    "Check the function clj-utils.utils/replace-all."
+    (testing "the function clj-utils.utils/replace-all."
+        (is (= "a" (replace-all "a" "b" nil)))))
+
+(deftest test-replace-all-NPE
+    "Check the function clj-utils.utils/replace-all."
+    (testing "the function clj-utils.utils/replace-all."
+        (is (thrown? NullPointerException (replace-all nil "a" "b")))
+        (is (thrown? NullPointerException (replace-all "a" nil "b")))
+        (is (thrown? NullPointerException (replace-all "a" "a" nil)))
+        (is (thrown? NullPointerException (replace-all nil nil "b")))))
 
 (deftest test-parse-boolean
     "Check the behaviour of function clj-utils.config/parse-boolean."
