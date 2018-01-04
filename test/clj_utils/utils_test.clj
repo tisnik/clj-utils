@@ -252,6 +252,22 @@
             "" (substring "Hello world!" 2 2)
             "" (substring "Hello world!" 10 10))))
 
+(deftest test-substring-empty-input
+    "Check the function clj-utils.utils/substring."
+    (testing "the function clj-utils.utils/substring."
+        (are [x y] (= x y)
+            "" (substring "Hello world!" 0 0)
+            "" (substring "Hello world!" 1 1)
+            "" (substring "Hello world!" 2 2)
+            "" (substring "Hello world!" 10 10))))
+
+(deftest test-substring-negative-indexes
+    "Check the function clj-utils.utils/substring."
+    (testing "the function clj-utils.utils/substring."
+        (is (thrown? StringIndexOutOfBoundsException (substring "Hello world!" -1 0)))
+        (is (thrown? StringIndexOutOfBoundsException (substring "Hello world!" 1 -1)))
+        (is (thrown? StringIndexOutOfBoundsException (substring "Hello world!" -1 -1)))))
+
 (deftest test-substring-NPE
     "Check the function clj-utils.utils/substring."
     (testing "the function clj-utils.utils/substring."
