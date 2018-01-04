@@ -182,7 +182,9 @@
     "Check the function clj-utils.utils/third."
     (testing "the function clj-utils.utils/third."
         (are [x y] (= x y)
-            nil (third nil))))
+            nil (third nil))
+            nil (third [])
+            nil (third '())))
 
 (deftest test-fourth-1
     "Check the function clj-utils/fourth."
@@ -209,7 +211,9 @@
     "Check the function clj-utils/fourth."
     (testing "the function clj-utils/fourth."
         (are [x y] (= x y)
-            nil (fourth nil))))
+            nil (fourth nil)
+            nil (fourth [])
+            nil (fourth '()))))
 
 (deftest test-substring-1
     "Check the function clj-utils.utils/substring."
