@@ -99,6 +99,17 @@
         (is (callable? 'clj-utils.utils/parse-boolean))))
 
 
+(deftest test-parse-color-existence
+    "Check that the clj-utils.utils/parse-color definition exists."
+    (testing "if the clj-utils.utils/parse-color definition exists."
+        (is (callable? 'clj-utils.utils/parse-color))))
+
+
+(deftest test-parse-color->Color-existence
+    "Check that the clj-utils.utils/parse-color->Color definition exists."
+    (testing "if the clj-utils.utils/parse-color->Color definition exists."
+        (is (callable? 'clj-utils.utils/parse-color->Color))))
+
 
 ;
 ; Tests for behaviour of all functions
@@ -463,7 +474,7 @@
         (is (thrown? NullPointerException (replace-all nil nil "b")))))
 
 (deftest test-parse-boolean
-    "Check the behaviour of function clj-utils.config/parse-boolean."
+    "Check the behaviour of function clj-utils.utils/parse-boolean."
     (are [x y] (= x y)
         true (parse-boolean "true")
         true (parse-boolean "True")
@@ -476,7 +487,7 @@
         false (parse-boolean nil)))
 
 (deftest test-parse-int-zero
-    "Check the behaviour of function clj-utils.config/parse-int."
+    "Check the behaviour of function clj-utils.utils/parse-int."
     (are [x y] (== x y)
         0 (parse-int "0")
         0 (parse-int "00")
@@ -486,7 +497,7 @@
         0 (parse-int "-000")))
 
 (deftest test-parse-int-positive-int
-    "Check the behaviour of function clj-utils.config/parse-int."
+    "Check the behaviour of function clj-utils.utils/parse-int."
     (are [x y] (== x y)
         1          (parse-int "1")
         2          (parse-int "2")
@@ -496,7 +507,7 @@
         2147483646 (parse-int "2147483646")))
 
 (deftest test-parse-int-negative-int
-    "Check the behaviour of function clj-utils.config/parse-int."
+    "Check the behaviour of function clj-utils.utils/parse-int."
     (are [x y] (== x y)
         -1          (parse-int "-1")
         -2          (parse-int "-2")
@@ -506,21 +517,21 @@
         -2147483647 (parse-int "-2147483647")))
 
 (deftest test-parse-int-min-int
-    "Check the behaviour of function clj-utils.config/parse-int."
+    "Check the behaviour of function clj-utils.utils/parse-int."
     (is (== Integer/MIN_VALUE (parse-int "-2147483648"))))
 
 (deftest test-parse-int-max-int
-    "Check the behaviour of function clj-utils.config/parse-int."
+    "Check the behaviour of function clj-utils.utils/parse-int."
     (is (== Integer/MAX_VALUE (parse-int "2147483647"))))
 
 (deftest test-parse-int-overflow
-    "Check the behaviour of function clj-utils.config/parse-int."
+    "Check the behaviour of function clj-utils.utils/parse-int."
     (are [x] (thrown? NumberFormatException x)
         (parse-int "2147483648")
         (parse-int "-2147483649")))
 
 (deftest test-parse-int-bad-input
-    "Check the behaviour of function clj-utils.config/parse-int."
+    "Check the behaviour of function clj-utils.utils/parse-int."
     (are [x] (thrown? NumberFormatException x)
         (parse-int "")
         (parse-int " ")
@@ -528,7 +539,7 @@
        ; (parse-int "+1"))) ; removed, not compatible with all supported JDKs
 
 (deftest test-parse-float-zero
-    "Check the behaviour of function clj-utils.config/parse-float."
+    "Check the behaviour of function clj-utils.utils/parse-float."
     (are [x y] (== x y)
         0.0 (parse-float "0")
         0.0 (parse-float "00")
@@ -538,7 +549,7 @@
         0.0 (parse-float "-000")))
 
 (deftest test-parse-float-positive-values
-    "Check the behaviour of function clj-utils.config/parse-float."
+    "Check the behaviour of function clj-utils.utils/parse-float."
     (are [x y] (== x y)
         0.5 (parse-float "0.5")
         1.0 (parse-float "1.0")
@@ -550,7 +561,7 @@
         1e10 (parse-float "1e10")))
 
 (deftest test-parse-float-negative-values
-    "Check the behaviour of function clj-utils.config/parse-float."
+    "Check the behaviour of function clj-utils.utils/parse-float."
     (are [x y] (== x y)
         -0.5 (parse-float "-0.5")
         -1.0 (parse-float "-1.0")
@@ -562,19 +573,55 @@
         -1e10 (parse-float "-1e10")))
 
 (deftest test-parse-float-min-value
-    "Check the behaviour of function clj-utils.config/parse-int."
+    "Check the behaviour of function clj-utils.utils/parse-int."
     (is (== Float/MIN_VALUE (parse-float "0x0.000002P-126f"))))
 
 (deftest test-parse-float-max-value
-    "Check the behaviour of function clj-utils.config/parse-int."
+    "Check the behaviour of function clj-utils.utils/parse-int."
     (is (== Float/MAX_VALUE (parse-float "0x1.fffffeP+127f"))))
 
 (deftest test-parse-float-bad-input
-    "Check the behaviour of function clj-utils.config/parse-float."
+    "Check the behaviour of function clj-utils.utils/parse-float."
     (are [x] (thrown? NumberFormatException x)
         (parse-float "")
         (parse-float "xyzzy")
         (parse-float "-1xyzzy")))
+
+(deftest test-parse-color
+    "Check the behaviour of function clj-utils.utils/parse-color."
+    (are [x y] (= x y)
+        (parse-color "#000000") [0 0 0]
+        (parse-color "#00007f") [0 0 127]
+        (parse-color "#007f00") [0 127 0]
+        (parse-color "#7f0000") [127 0 0]
+        (parse-color "#000080") [0 0 128]
+        (parse-color "#008000") [0 128 0]
+        (parse-color "#800000") [128 0 0]
+        (parse-color "#0000ff") [0 0 255]
+        (parse-color "#00ff00") [0 255 0]
+        (parse-color "#ff0000") [255 0 0]
+        (parse-color "#ffffff") [255 255 255]))
+
+(deftest test-parse-color-bad-input
+    "Check the behaviour of function clj-utils.utils/parse-color."
+    (are [x] (nil? x)
+        (parse-color nil)
+        (parse-color "")
+        (parse-color "008000")
+        (parse-color "#zzzzzz")
+        (parse-color "#ffffff00")))
+
+(deftest test-parse-color->Color
+    "Check the behaviour of function clj-utils.utils/parse-color->Color."
+    (are [x y] (= x y)
+        (parse-color->Color "#000000") (java.awt.Color/BLACK)
+        (parse-color->Color "#ff0000") (java.awt.Color/RED)
+        (parse-color->Color "#00ff00") (java.awt.Color/GREEN)
+        (parse-color->Color "#0000ff") (java.awt.Color/BLUE)
+        (parse-color->Color "#00ffff") (java.awt.Color/CYAN)
+        (parse-color->Color "#ff00ff") (java.awt.Color/MAGENTA)
+        (parse-color->Color "#ffff00") (java.awt.Color/YELLOW)
+        (parse-color->Color "#ffffff") (java.awt.Color/WHITE)))
 
 (deftest test-throw-exception
     "Check the behaviour of function clj-utils.utils/throw-exception."
