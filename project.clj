@@ -10,7 +10,7 @@
 ;      Pavel Tisnovsky
 ;
 
-(defproject org.clojars.tisnik/clj-utils "0.1.0-SNAPSHOT"
+(defproject org.clojars.tisnik/clj-utils "0.2.0-SNAPSHOT"
     :description "Simple library to read and parse INI files."
     :url "https://github.com/tisnik/clj-utils"
     :license {:name "Eclipse Public License"
