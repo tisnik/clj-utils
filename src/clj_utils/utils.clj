@@ -79,11 +79,32 @@
 
 (defn parse-boolean
     "Parse the given string as a boolean value."
-    [string]
+    [^String string]
     (or (= string "true")
         (= string "True")
         (= string "yes")
         (= string "Yes")))
+
+(defn parse-color
+    "Parse the value in format #rrggbb and return red, green, blue triple; nil instead."
+    [^String string]
+    (if (and string (re-matches #"#[0-9a-fA-F]{6}" string))
+        (let [red-part   (subs string 1 3)
+              green-part (subs string 3 5)
+              blue-part  (subs string 5 7)]
+              ; parsing must be successful, because the string matched HTML color regexp
+              [(Integer/parseInt red-part   16)
+               (Integer/parseInt green-part 16)
+               (Integer/parseInt blue-part  16)])))
+
+(defn parse-color->Color
+    "Conversion from color triple (vector) into an instance java.awt.Color."
+    [^String string]
+    (let [color-triple (parse-color string)]
+        (if color-triple
+            (new java.awt.Color (first color-triple)
+                                (second color-triple)
+                                (third color-triple)))))
 
 (defn throw-exception
     ( [message]
