@@ -111,6 +111,12 @@
         (is (callable? 'clj-utils.utils/parse-color->Color))))
 
 
+(deftest test-rgb->Color-existence
+    "Check that the clj-utils.utils/rgb->Color definition exists."
+    (testing "if the clj-utils.utils/rgb->Color definition exists."
+        (is (callable? 'clj-utils.utils/rgb->Color))))
+
+
 ;
 ; Tests for behaviour of all functions
 ;
@@ -622,6 +628,15 @@
         (parse-color->Color "#ff00ff") (java.awt.Color/MAGENTA)
         (parse-color->Color "#ffff00") (java.awt.Color/YELLOW)
         (parse-color->Color "#ffffff") (java.awt.Color/WHITE)))
+
+(deftest test-rgb->Color
+    "Check the behaviour of function clj-utils.utils/rgb->Color."
+    (are [x y] (= x y)
+        (rgb->Color [0 0 0])       (java.awt.Color/BLACK)
+        (rgb->Color [255 255 255]) (java.awt.Color/WHITE)
+        (rgb->Color [255 0 0])     (java.awt.Color/RED)
+        (rgb->Color [0 255 0])     (java.awt.Color/GREEN)
+        (rgb->Color [0 0 255])     (java.awt.Color/BLUE)))
 
 (deftest test-throw-exception
     "Check the behaviour of function clj-utils.utils/throw-exception."
