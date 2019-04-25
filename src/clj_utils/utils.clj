@@ -111,6 +111,11 @@
         (= string "Yes")))
 
 
+(defmacro ->boolean
+    [s]
+    `(parse-boolean ~s))
+
+
 (defn parse-color
     "Parse the value in format #rrggbb and return red, green, blue triple; nil instead."
     [^String string]
