@@ -86,6 +86,10 @@
     (java.lang.Integer/parseInt string))
 
 
+(defmacro ->int
+    [s]
+    `(parse-int ~s))
+
 (defn parse-float
     "Parse the given string as a float number."
     [^String string]
