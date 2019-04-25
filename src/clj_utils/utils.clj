@@ -90,10 +90,16 @@
     [s]
     `(parse-int ~s))
 
+
 (defn parse-float
     "Parse the given string as a float number."
     [^String string]
     (java.lang.Float/parseFloat string))
+
+
+(defmacro ->float
+    [s]
+    `(parse-float ~s))
 
 
 (defn parse-boolean
