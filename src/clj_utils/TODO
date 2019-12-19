@@ -1,0 +1,7 @@
+
+
+
+
+(defmacro ->color [s] `(parse-color ~s))
+
+(defmacro ->Color [s] `(parse-color->Color ~s))
