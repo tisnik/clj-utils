@@ -18,6 +18,9 @@
   :dependencies [[org.clojure/clojure "1.10.1"]]
   :plugins [[codox "0.10.7"]
             [test2junit "1.1.0"]
-            [lein-cloverage "1.0.7-SNAPSHOT"]]
+            ;[lein-test-out "0.3.1"]
+            [lein-cloverage "1.0.7-SNAPSHOT"]
+            [lein-kibit "0.1.8"]
+            ]
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}})
