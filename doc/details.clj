@@ -44,7 +44,7 @@
    {:url "https://repo1.maven.org/maven2/", :snapshots false}]
   ["clojars" {:url "https://repo.clojars.org/"}]],
  :plugins
- ([codox/codox "0.10.7"]
+ ([lein-codox/lein-codox "0.10.7"]
   [test2junit/test2junit "1.1.0"]
   [lein-cloverage/lein-cloverage "1.0.7-SNAPSHOT"]
   [lein-kibit/lein-kibit "0.1.8"]
